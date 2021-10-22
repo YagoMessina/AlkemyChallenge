@@ -28,7 +28,7 @@ public class CharacterController {
     }
 
     @GetMapping("/detailed")
-    ResponseEntity<List<Character>> findAll(){
+    public ResponseEntity<List<Character>> findAll(){
         return ResponseEntity.ok(characterService.findAll());
     }
 

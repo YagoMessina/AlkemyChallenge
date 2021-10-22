@@ -31,14 +31,19 @@ public class Movie {
     public Movie() {
     }
 
-    public Movie(String image, String title,
-                 LocalDate creationDate, float qualification,
-                 Set<Character> characters) {
+    public Movie(Long id, String image,
+                 String title, LocalDate creationDate,
+                 float qualification, Set<Character> characters) {
+        this.id = id;
         this.image = image;
         this.title = title;
         this.creationDate = creationDate;
         this.qualification = qualification;
         this.characters = characters;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getImage() {
