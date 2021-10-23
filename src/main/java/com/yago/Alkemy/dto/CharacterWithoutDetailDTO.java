@@ -10,4 +10,12 @@ public class CharacterWithoutDetailDTO {
         this.image = image;
         this.name = name;
     }
+
+    public String getImage() {
+        return image;
+    }
+
+    public String getName() {
+        return name;
+    }
 }

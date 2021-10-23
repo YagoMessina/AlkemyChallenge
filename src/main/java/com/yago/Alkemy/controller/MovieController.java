@@ -11,6 +11,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/movies")
@@ -22,14 +23,14 @@ public class MovieController {
         this.movieService = movieService;
     }
 
+    @GetMapping
+    public ResponseEntity<?> find(@RequestParam Map<String, String> param) {
+        return ResponseEntity.ok(movieService.findAll(param));
+    }
+
     @GetMapping("/detailed")
     public ResponseEntity<?> findAll() {
         return ResponseEntity.ok(movieService.findAll());
-    }
-
-    @GetMapping
-    public ResponseEntity<?> findAllWithoutDetail() {
-        return ResponseEntity.ok(movieService.findAllWithoutDetail());
     }
 
     @PostMapping

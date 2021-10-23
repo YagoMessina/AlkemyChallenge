@@ -15,4 +15,16 @@ public class MovieWithoutDetailDTO {
         this.title = title;
         this.creationDate = creationDate;
     }
+
+    public String getImage() {
+        return image;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public LocalDate getCreationDate() {
+        return creationDate;
+    }
 }

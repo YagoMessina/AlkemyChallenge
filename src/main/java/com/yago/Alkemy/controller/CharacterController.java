@@ -11,6 +11,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/characters")
@@ -22,9 +23,9 @@ public class CharacterController {
         this.characterService = characterService;
     }
 
-    @GetMapping
-    public ResponseEntity<List<CharacterWithoutDetailDTO>> findAllWithoutDetail(){
-        return ResponseEntity.ok(characterService.findAllWithoutDetail());
+    @GetMapping()
+    public ResponseEntity<?> find(@RequestParam Map<String, String> param){
+        return ResponseEntity.ok(characterService.findAll(param));
     }
 
     @GetMapping("/detailed")
