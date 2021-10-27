@@ -16,7 +16,7 @@ public class CharacterDTO {
     private int age;
 
     @NotNull (message = "Weight cannot be null.")
-    private float weight;
+    private Float weight;
 
     @NotNull (message = "Story cannot be null.")
     private String story;

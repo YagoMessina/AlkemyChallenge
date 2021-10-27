@@ -1,5 +1,8 @@
 package com.yago.Alkemy.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -27,7 +30,8 @@ public class Character {
     private String story;
 
     @Column
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "characters")
+    @JsonIgnoreProperties("characters")
     private Set<Movie> movies;
 
     public Character() {

@@ -1,5 +1,8 @@
 package com.yago.Alkemy.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -18,17 +21,18 @@ public class Genre {
     private String image;
 
     @Column
-    @OneToMany(cascade = CascadeType.ALL)
-    private Set<Movie> films;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "genre")
+    @JsonIgnoreProperties("genre")
+    private Set<Movie> movies;
 
     public Genre() {
     }
 
     public Genre(String name, String image,
-                 Set<Movie> films) {
+                 Set<Movie> movies) {
         this.name = name;
         this.image = image;
-        this.films = films;
+        this.movies = movies;
     }
 
     public String getName() {
@@ -47,11 +51,19 @@ public class Genre {
         this.image = image;
     }
 
-    public Set<Movie> getFilms() {
-        return films;
+    public Long getId() {
+        return id;
     }
 
-    public void setFilms(Set<Movie> films) {
-        this.films = films;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Set<Movie> getMovies() {
+        return movies;
+    }
+
+    public void setMovies(Set<Movie> movies) {
+        this.movies = movies;
     }
 }

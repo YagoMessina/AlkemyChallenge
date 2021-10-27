@@ -6,22 +6,20 @@ import com.yago.Alkemy.security.dto.AuthResponseDTO;
 import com.yago.Alkemy.security.model.User;
 import com.yago.Alkemy.security.service.CustomUserDetailsService;
 import com.yago.Alkemy.security.service.JwtService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-
-import static org.springframework.security.web.context.HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY;
 
 @RestController
 @RequestMapping("/auth")
@@ -39,6 +37,7 @@ public class UserController {
         this.jwtService = jwtService;
     }
 
+    @Operation(summary = "Login")
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody @Valid AuthRequestDTO request) throws Exception {
         try {
@@ -53,15 +52,17 @@ public class UserController {
         return ResponseEntity.ok(new AuthResponseDTO(token));
     }
 
+    @Operation(summary = "Register")
     @PostMapping("/register")
     public ResponseEntity<User> register(@RequestBody @Valid UserDTO userDTO) {
         User user = customUserDetailsService.save(userDTO);
         return ResponseEntity.ok(user);
     }
 
+    @Operation(summary = "Activation")
     @GetMapping("/activate/{activationToken}")
     public ResponseEntity<?> activate(@PathVariable String activationToken){
         customUserDetailsService.activate(activationToken);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok("Your account was successfully activated!");
     }
 }

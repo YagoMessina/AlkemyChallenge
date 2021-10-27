@@ -51,7 +51,7 @@ public class CharacterService {
                 predicate = predicate.and(character -> character.getMovies().stream()
                         .anyMatch(movie -> ("" + movie.getId()).equals(param.get("movies"))));
         } else {
-            throw new ApiException(HttpStatus.BAD_REQUEST, "Invalid param", "Valid params are: name, age, moviesZ");
+            throw new ApiException(HttpStatus.BAD_REQUEST, "Invalid param", "Valid params are: name, age, movies");
         }
 
         return findAll().stream().filter(predicate).collect(Collectors.toList());

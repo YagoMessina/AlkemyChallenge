@@ -1,7 +1,9 @@
 package com.yago.Alkemy.dto;
 
 import com.yago.Alkemy.model.Character;
+import com.yago.Alkemy.model.Genre;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.Set;
@@ -20,10 +22,14 @@ public class MovieDTO {
     private LocalDate creationDate;
 
     @NotNull (message = "Qualification cannot be null.")
-    private float qualification;
+    private Float qualification;
 
     @NotNull (message = "Characters cannot be null.")
-    private Set<Character> characters;
+    @Valid
+    private Set<CharacterDTO> characters;
+
+    @NotNull (message = "Genre cannot be null.")
+    private GenreDTO genre;
 
     public Long getId() {
         return id;
@@ -45,7 +51,11 @@ public class MovieDTO {
         return qualification;
     }
 
-    public Set<Character> getCharacters() {
+    public Set<CharacterDTO> getCharacters() {
         return characters;
+    }
+
+    public GenreDTO getGenre() {
+        return genre;
     }
 }
