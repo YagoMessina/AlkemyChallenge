@@ -7,10 +7,6 @@ import com.yago.Alkemy.security.model.User;
 import com.yago.Alkemy.security.service.CustomUserDetailsService;
 import com.yago.Alkemy.security.service.JwtService;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -39,13 +35,13 @@ public class UserController {
 
     @Operation(summary = "Login")
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody @Valid AuthRequestDTO request) throws Exception {
+    public ResponseEntity<?> login(@RequestBody @Valid AuthRequestDTO request) {
         try {
             UsernamePasswordAuthenticationToken authentication =
                     new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword());
             Authentication auth = authenticationManager.authenticate(authentication);
         } catch (BadCredentialsException e) {
-            return ResponseEntity.badRequest().build();//throw new Exception("Invalid username or password", e);
+            return ResponseEntity.badRequest().build();
         }
         UserDetails userDetails = customUserDetailsService.loadUserByUsername(request.getUsername());
         String token = jwtService.createToken(userDetails);

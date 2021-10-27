@@ -1,15 +1,10 @@
 package com.yago.Alkemy.controller;
 
-import com.yago.Alkemy.dto.CharacterDTO;
 import com.yago.Alkemy.dto.MovieDTO;
-import com.yago.Alkemy.model.Character;
 import com.yago.Alkemy.model.Movie;
 import com.yago.Alkemy.service.MovieService;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;

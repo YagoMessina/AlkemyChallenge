@@ -1,12 +1,9 @@
 package com.yago.Alkemy.service;
 
-import com.yago.Alkemy.dto.CharacterDTO;
 import com.yago.Alkemy.dto.MovieDTO;
 import com.yago.Alkemy.dto.MovieWithoutDetailDTO;
 import com.yago.Alkemy.error.ApiException;
-import com.yago.Alkemy.mapper.CharacterMapper;
 import com.yago.Alkemy.mapper.MovieMapper;
-import com.yago.Alkemy.model.Character;
 import com.yago.Alkemy.model.Genre;
 import com.yago.Alkemy.model.Movie;
 import com.yago.Alkemy.repository.GenreRepository;

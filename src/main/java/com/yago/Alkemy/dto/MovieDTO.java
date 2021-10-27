@@ -1,8 +1,5 @@
 package com.yago.Alkemy.dto;
 
-import com.yago.Alkemy.model.Character;
-import com.yago.Alkemy.model.Genre;
-
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
